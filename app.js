@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+
 
 // init an express app
 const app = express();
@@ -9,14 +11,14 @@ app.use(express.static('./public'))
 
 // homepage
 app.get('/', (req, res) => {
-    res.status(200).send("Home Page")
+    res.sendFile(path.resolve(__dirname, './nav-app/index.html'))
 })
 
 
 // about page
-app.get('/about', (req, res) => {
-    res.status(200).send("About Page")
-})
+// app.get('/about', (req, res) => {
+//     res.status(200).send("About Page")
+// })
 
 
 // do everything
