@@ -1,18 +1,31 @@
 const express = require('express');
 
+// init an express app
 const app = express();
 
+// serving static files and folders
+app.use(express.static('./public'))
 
+
+// homepage
 app.get('/', (req, res) => {
-    res.send("Home Page")
+    res.status(200).send("Home Page")
 })
 
+
+// about page
+app.get('/about', (req, res) => {
+    res.status(200).send("About Page")
+})
+
+
+// do everything
+app.all('*', (req,res) => {
+    res.status(404).send('<h1> Resource not found </h1>')
+})
+
+
+// server is paying attention to the port
 app.listen(5000, () => {
     console.log('server is listening on port 5000....')
 })
-// app.get
-// app.post
-// app.delete
-// app.put
-// app.all
-// app.listen
