@@ -11,7 +11,7 @@ app.use(express.static('./public'))
 
 // homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './nav-app/index.html'))
+    res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
 })
 
 
