@@ -21,11 +21,17 @@ app.get('/api/products', (req, res) => {
 })
 
 
-// getting a single product using the id
-app.get('/api/products/1', (req, res) => {
-    const singleProduct = products.find((product) => product.id === 1)
+// getting a single product using the id and req.params
+app.get('/api/products/:productID', (req, res) => {
+    const { productID } = req.params;
 
-    res.json(singleProduct)
+    const singleProduct = products.find((product) => product.id === Number(productID))
+
+    if(singleProduct){
+        return res.json(singleProduct)
+    }
+
+    return res.status(404).send('Page not found')
 })
 
 
