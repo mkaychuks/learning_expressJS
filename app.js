@@ -21,6 +21,14 @@ app.get('/api/products', (req, res) => {
 })
 
 
+// getting a single product using the id
+app.get('/api/products/1', (req, res) => {
+    const singleProduct = products.find((product) => product.id === 1)
+
+    res.json(singleProduct)
+})
+
+
 // server is paying attention to the port
 app.listen(5000, () => {
     console.log('server is listening on port 5000....')
