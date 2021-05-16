@@ -1,29 +1,23 @@
 const express = require('express');
-const path = require('path');
+const {products} = require('./data')
 
 
 // init an express app
 const app = express();
 
-// serving static files and folders
-app.use(express.static('./public'))
 
-
-// homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
+    res.send(`</h1>Home Page</h1> <a href="/api/products">products</a>`)
 })
 
 
-// about page
-// app.get('/about', (req, res) => {
-//     res.status(200).send("About Page")
-// })
-
-
-// do everything
-app.all('*', (req,res) => {
-    res.status(404).send('<h1> Resource not found </h1>')
+app.get('/api/products', (req, res) => {
+    // using the map function and passing specific fields of data:
+    const newProducts = products.map((product) => {
+        const {id, name, image, price} = product;
+        return {id, name, image, price}
+    })
+    res.json(newProducts)
 })
 
 
