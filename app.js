@@ -36,16 +36,20 @@ app.get('/api/products/:productID', (req, res) => {
 
 // adding a query structure
 app.get('/api/v1/query', (req, res) => {
-    const {search , limit} = req.query
-    let sortedProducts = [...products]
+    const {search , limit} = req.query  // setting the query params
+    let sortedProducts = [...products]  // copying the entire products
 
+    // creating the search variable
     if(search){
         sortedProducts = sortedProducts.filter((product) => {
-            return product.name.startsWith(search)
+            return product.name.startsWith(search)  // filtering the products, callback func way
         })
     }
     if(limit){
-        sortedProducts = sortedProducts.slice(0, Number(limit))
+        sortedProducts = sortedProducts.slice(0, Number(limit)) // slicing the lists
+    }
+    if(sortedProducts.length < 1){
+        return res.status(200).json({success: true, data: []})
     }
     res.status(200).json(sortedProducts)
 })
