@@ -34,6 +34,22 @@ app.get('/api/products/:productID', (req, res) => {
     return res.status(404).send('Page not found')
 })
 
+// adding a query structure
+app.get('/api/v1/query', (req, res) => {
+    const {search , limit} = req.query
+    let sortedProducts = [...products]
+
+    if(search){
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startsWith(search)
+        })
+    }
+    if(limit){
+        sortedProducts = sortedProducts.slice(0, Number(limit))
+    }
+    res.status(200).json(sortedProducts)
+})
+
 
 // server is paying attention to the port
 app.listen(5000, () => {
