@@ -19,9 +19,9 @@ app.post('/login', (req, res) => {
     const { name } = req.body;
     
     if( name ){
-        return res.status()
+        return res.status(200).send(`Welcome ${name}`)
     }
-    res.send('POST')
+    res.status(401).send('Please Provide Credentials')
 })
 
 // server is paying attention to the port
