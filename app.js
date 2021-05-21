@@ -1,27 +1,24 @@
 const express = require('express');
-const {products} = require('./data')
-const logger = require('./logger')
-const authorize = require('./authorize')
+const {people} = require('./data')
 
 
 // init an express app
 const app = express();
 
 
-// setting the app.use materials
-app.use([logger, authorize]);
+// static files setup
+app.use(express.static('./methods-public'));
+app.use(express.urlencoded({extended:false}));
 
-// working with middlewares
-app.get('/', logger,(req, res) => {
-    res.send('Home')
+app.get('/api/people', (req, res) => {
+    res.status(200).json({ success: true, data: people})
 })
 
 
-app.get('/about', (req, res) => {
-    console.log(req.user)
-    res.send('About')
+app.post('/login', (req, res) => {
+    console.log(req.body)
+    res.send('POST')
 })
-
 
 // server is paying attention to the port
 app.listen(5000, () => {
