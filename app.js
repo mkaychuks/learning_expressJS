@@ -1,6 +1,7 @@
 const express = require('express');
 const {products} = require('./data')
 const logger = require('./logger')
+const authorize = require('./authorize')
 
 
 // init an express app
@@ -8,7 +9,7 @@ const app = express();
 
 
 // setting the app.use materials
-app.use(logger)
+app.use([logger, authorize])
 
 // working with middlewares
 app.get('/', logger,(req, res) => {
