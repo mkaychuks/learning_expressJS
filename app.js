@@ -16,7 +16,11 @@ app.get('/api/people', (req, res) => {
 
 
 app.post('/login', (req, res) => {
-    console.log(req.body)
+    const { name } = req.body;
+    
+    if( name ){
+        return res.status()
+    }
     res.send('POST')
 })
 
