@@ -1,18 +1,14 @@
 const express = require('express');
 const {products} = require('./data')
+const logger = require('./logger')
 
 
 // init an express app
 const app = express();
 
-// logger function
-const logger = (req, res, next) => {
-    const method = req.method;
-    const url = req.url;
-    const time = new Date().getFullYear();
-    console.log(method, url, time)
-}
 
+// setting the app.use materials
+app.use(logger)
 
 // working with middlewares
 app.get('/', logger,(req, res) => {
