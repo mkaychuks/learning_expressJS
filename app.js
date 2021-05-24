@@ -58,6 +58,17 @@ app.put('/api/people/:id', (req, res) => {
 })
 
 
+// handling a DELETE request
+app.delete('/api/people/:id', (req, res) => {
+    const person = people.find((person) => person.id === Number(req.params.id))
+
+    if( !person ){
+        return res.status(404).json({success: false, message:`no person with id ${req.params.id}`})
+    }
+
+    const newPeople = people.filter((person) => person.id !== Number(req.params.id))
+    return res.status(200).json({success: true, data: newPeople})
+})
 
 // server is paying attention to the port
 app.listen(5000, () => {
