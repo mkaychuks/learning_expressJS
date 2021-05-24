@@ -14,10 +14,6 @@ app.use(express.json());
 
 app.use('api/people', peopleRouter)
 
-app.get('/api/people', (req, res) => {
-    res.status(200).json({ success: true, data: people})
-})
-
 
 // server side handling of forms
 app.post('/api/people', (req, res) => {

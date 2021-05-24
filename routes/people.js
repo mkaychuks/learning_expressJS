@@ -2,6 +2,11 @@ const express = require('express')
 const {people} = require('../data')
 const router = express.Router()
 
+const { getPeople } = require('../controllers/peoples')
+
+
+router.get('/', getPeople)
+
 // handling a put http request
 router.put('/:id', (req, res) => {
     const {id} = req.params
