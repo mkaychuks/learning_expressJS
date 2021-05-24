@@ -42,9 +42,7 @@ app.put('/api/people/:id', (req, res) => {
     const {id} = req.params
     const {name} = req.body
     
-    const person = people.find((person) => {
-        person.id === Number(id)
-    })
+    const person = people.find((person) => person.id === Number(id))
 
     if( !person ){
         return res.status(404).json({success: false, message:`no person with id ${id}`})
@@ -58,6 +56,8 @@ app.put('/api/people/:id', (req, res) => {
     })
     res.status(200).json({ success: true, data: newPeople})
 })
+
+
 
 // server is paying attention to the port
 app.listen(5000, () => {
