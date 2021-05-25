@@ -2,7 +2,9 @@ const express = require('express')
 const {people} = require('../data')
 const router = express.Router()
 
-const { getPeople } = require('../controllers/peoples')
+
+const { getPeople } = require('../controllers/peopleController')
+
 
 
 router.get('/', getPeople)

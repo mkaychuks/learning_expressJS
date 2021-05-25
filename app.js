@@ -12,7 +12,7 @@ app.use(express.static('./methods-public'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-app.use('api/people', peopleRouter)
+app.use('api/people/', peopleRouter)
 
 
 // server side handling of forms
